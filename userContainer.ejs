@@ -1,0 +1,26 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="main col-md-12" style="max-height: 80vh">
+      <div class="list-group">
+        <% for(var i=0; i < users.length; i++) {%>
+          <a href="/pwd/<%= users[i].username %>" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex flex-row w-100 justify-content-between">
+              <h4>
+                <%= users[i].username %>
+              </h4>
+              <h4>
+                <%= users[i].name %>
+              </h4>
+              <h4>
+                <%= users[i].status %>
+              </h4>
+              <form action="/admin/changestatus/<%=users[i].username%>?_method=POST" method="POST">
+                <button class="btn btn-danger ">CHANGE STATUS</button>
+              </form>
+            </div>
+          </a>
+          <% } %>
+      </div>
+    </div>
+  </div>
+</div>

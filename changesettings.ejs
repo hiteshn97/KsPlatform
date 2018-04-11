@@ -1,0 +1,200 @@
+<% include _layouts/navbarHeader %>
+
+<style>
+    .bg-white {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(221, 221, 221, 1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(221, 221, 221, 1);
+    box-shadow: 0px 0px 5px 0px rgba(221, 221, 221, 1);
+    }
+    .pinside40 {
+        padding: 40px;
+    }
+    .pinside30 {
+        padding: 30px;
+    }
+    .mb30 {
+        margin-bottom: 30px;
+    }
+    form {
+        display: block;
+        margin-top: 0em;
+    }
+    .form-title {
+        border-bottom: 1px solid #e8e6df;
+        padding-bottom: 19px;
+        margin-bottom: 30px;
+    }
+    input.form-control {
+        height: 40px;
+        background-color: #fdfdfb;
+        -webkit-border-radius: 2px;
+        -moz-border-radius: 2px;
+        border-radius: 2px;
+        border: 1px solid #e9e6e0;
+        -webkit-box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+        box-shadow: inset 0 0px 0px rgba(0, 0, 0, .075);
+        font-family: 'Montserrat', sans-serif;
+    }
+    .mainheading {
+        text-align: center;
+    }
+    #imageUpload
+    {
+        display: none;
+    }
+
+    #profileImage
+    {
+        cursor: pointer;
+    }
+
+    #profile-container {
+        width: 150px;
+        height: 150px;
+        overflow: hidden;
+    }
+
+    #profile-container img {
+        width: 150px;
+        height: 150px;
+    }
+</style>
+    
+    <div class="container">
+    <h1 class="mainheading">Account Settings</h1>
+    <br>
+
+    
+                <div class="col-md-12 profile-dashboard">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <form class="form-horizontal" action="/pwd/<%=user.username%>/settings?_method=put" method="POST">
+
+             
+                                <div class="bg-white pinside40 mb30">
+                                    <!-- Form Name -->
+                                    <!-- Text input-->
+                                    <h2>Personal Information</h2>	
+                                    <hr><br>
+                                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" >Picture </label>
+
+                                        
+                                        <div class="col-md-8" id="profile-container">
+                                            <img src="http://localhost:3000/<%= user.picture.substring(6,100) %>" id="profileImage" class="z-depth-3">
+                                        </div>
+                                        <input name="picture" id="imageUpload" type="file" class="form-control input-md" accept="image/*" capture>
+                                    </div>
+                                    <script>
+                                    $("#profileImage").click(function(e) {
+                                        $("#imageUpload").click();
+                                    });
+                                    
+                                    function fasterPreview( uploader ) {
+                                        if ( uploader.files && uploader.files[0] ){
+                                              $('#profileImage').attr('src', 
+                                                 window.URL.createObjectURL(uploader.files[0]) );
+                                        }
+                                    }
+                                    $("#imageUpload").change(function(){
+                                        fasterPreview( this );
+                                    });
+                                    </script>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" >Name</label>
+                                        <div class="col-md-8">
+                                            <input name="newUser[name]" type="text" value="<%=user.name%> " disabled required class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" >Email ID </label>
+                                        <div class="col-md-8">
+                                            <input name="newUser[email]" type="text" value="<%= user.email %>" disabled required class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label" >Designation</label>
+                                        <div class="col-md-8">
+                                            <input name="newUser[designation]" type="text" value="<%= user.designation %>" disabled required class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Address</label>
+                                        <div class="col-md-8">
+
+                                            <input name="newUser[address]" type="address" required value="<%= user.address %>" class="form-control input-md">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Contact</label>
+                                        <div class="col-md-8">
+                                            <input name="newUser[contact]" type="text" required value="<%= user.contact %>" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-md-offset-5">
+                                            <input type="submit" class="btn btn-success" value="Save Chages">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+           <form class="form-horizontal" action="/passwordsettings" method="POST">
+                                <div class="bg-white pinside30">
+                                    <!-- Form Name -->
+                                    <h2 class="form-title">Change Password</h2>
+                                    <br>
+                                    <!-- Text input-->
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Old Password</label>
+                                        <div class="col-md-8">
+                                            <input id="oldpassword" name="oldpassword" placeholder="Old Password" type="password" required class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">New Password</label>
+                                        <div class="col-md-8">
+                                            <input id="passwordfirst" name="changepassword[password]" type="password" required placeholder="New Password" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-3 control-label">Confirm Password</label>
+                                        <div class="col-md-8">
+                                            <input id="confirm-password" name="ConfirmPassword" type="password" required placeholder="Confirm Password" class="form-control input-md">
+                                        </div>
+                                    </div>
+                                    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+									<script type="text/javascript">
+										$(function () {
+											$("#register-submit").click(function () {
+												var firstpassword = $("#passwordfirst").val();
+												var confirmPassword = $("#confirm-password").val();
+												if (firstpassword != confirmPassword) {
+													alert("The passwords do not match");
+													//alert("Hello! Updated4! "+firstpassword+" "+confirmPassword);
+													return false;
+												}
+												return true;
+											});
+										});
+									</script>
+                                    <br>
+                                    <!-- Button -->
+                                    <div class="form-group">
+                                        <div class="col-md-4 col-md-offset-5">
+                                            <input type="submit" id="register-submit" class="btn btn-success" value="Change Password">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <br>
+                        </div>
+                    </div>
+                </div>
+    </div>
+<% include _layouts/footer.ejs %>

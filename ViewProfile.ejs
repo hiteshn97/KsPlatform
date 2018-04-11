@@ -1,0 +1,78 @@
+<% include _layouts/navbarHeader %>
+    <% var views = 0; %>
+        <% for(var i=0; i < posts.length; i++) {%>
+            <% views = views + posts[i].views %>
+                <% } %>
+                    <div class="container-fluid">
+                        <div class="col-sm-2">
+                            <figure>
+                                <img src="http://localhost:3000/<%= users.picture.substring(6,100) %>" style="width:200px;height:200px;">
+                                <h3>
+                                    <ins>
+                                        <%= users.designation %>
+                                    </ins>
+                                </h3>
+                            </figure>
+                        </div>
+
+                        <div class="col-sm-8">
+                            <div class="col-sm-5 " style="max-width: 20rem;">
+                                <h2>
+                                    <%= users.name %>
+                                </h2>
+                            </div>
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-5" style="max-width: 20rem;">
+                                <h2>
+                                    <%= users.username %>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="container-fluid">
+                        <p>
+                            <br>
+                        </p>
+                    </div>
+                    </div>
+                    <div class="container-fluid">
+
+                        <div class="col-sm-2">
+                            <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Total Contributions</div>
+                                <div class="card-body">
+
+                                    <p class="card-text"><%= posts.length %></p>
+                                </div>
+                            </div>
+                            <div class="card text-white bg-secondary mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Total Views</div>
+                                <div class="card-body">
+
+                                    <p class="card-text">
+                                        <%= views%>
+                                    </>
+                                </div>
+                            </div>
+                            <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+                                <div class="card-header">Total Upvotes</div>
+                                <div class="card-body">
+
+                                    <p class="card-text">900</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <% include postContainer.ejs %>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <p align='center'>
+                                <h1>Pending Queries Schema Needed</h1>
+                            </p>
+                        </div>
+
+                    </div>
+                    <% include _layouts/footer.ejs %>

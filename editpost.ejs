@@ -1,0 +1,50 @@
+<% include _layouts/navbarHeader %>
+
+<div class="container">
+	<div class="row">
+      <div class="col-md-12">
+        <div class="well well-sm">
+          <form class="form-horizontal" action="/posts/<%=post.id%>?_method=PUT" method="POST">
+            <legend class="text-center"><h1>Edit Post</h1></legend>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">Post Title</label>
+                <div class="col-md-9">
+                      <textarea class="form-control" name="title" rows="1"><%= post.title %></textarea>
+                </div>
+            </div>
+
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-2 control-label">Post Content</label>
+              <div class="col-md-9">
+                <textarea class="form-control" name="body" rows="10"><%= post.body %></textarea>
+              </div>
+            </div>
+
+            <!-- <div class="form-group">
+                <label class="col-md-2 control-label">Add Image</label>
+                <div class="col-md-9">
+                <input type="file" name="picture" accept="image/*">
+                </div>
+            </div> -->
+
+            <div class="form-group">
+                <label class="col-md-2 control-label">OverWrite PDF File</label>
+                <div class="col-md-9">
+                    <input type="file" name="pdffile" accept=".pdf">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-12 text-right">
+                    <input type="Submit" class="btn btn-success">
+                </div>
+            </div>
+          </form>
+        </div>
+      </div>
+	</div>
+</div>
+
+<% include _layouts/footer.ejs %>

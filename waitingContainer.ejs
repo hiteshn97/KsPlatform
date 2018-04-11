@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="main col-md-12" style="max-height: 80vh">
+      <div class="list-group">
+        <% for(var i=waiting.length - 1; i >= 0; i--) {%>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+              <h4>
+                <%= waiting[i].username %>
+              </h4>
+              <h4>
+                <%= waiting[i].name %>
+              </h4>
+              <h4>
+                <%= waiting[i].status %>
+              </h4>
+              <form action="/waitingpwd/<%=waiting[i].username%>" method="GET">
+                <button class="btn btn-primary">View Profile</button>
+              </form>
+              <form action="/admin/register/<%=waiting[i].username%>" method="POST">
+                <button class="btn btn-primary">Accept</button>
+              </form>
+              <form action="/admin/deleteWaiting/<%=waiting[i].username%>?_method=DELETE" method="POST">
+                <button class="btn btn-primary">Delete</button>
+              </form>
+            </div>
+          </a>
+          <% } %>
+      </div>
+    </div>
+  </div>
+</div>

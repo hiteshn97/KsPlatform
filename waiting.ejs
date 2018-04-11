@@ -1,0 +1,44 @@
+<% include _layouts/navbarHeader %>
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <img src="http://localhost:3000/<%= waitingusers.picture.substring(6,100) %>" style="width:200px;height:200px;">
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="display-3">
+                <%= waitingusers.username %>
+            </h1>
+            <h2 class="display-3">
+                <%= waitingusers.name %>
+            </h2>
+            <hr class="my-4">
+            <label class="control-label">Address</label>
+            <p>
+                <%= waitingusers.address %>
+            </p>
+            <label class="control-label">Contact Number</label>
+            <p>
+                <%= waitingusers.contact %>
+            </p>
+            <label class="control-label">Zone</label>
+            <p>
+                <%= waitingusers.zone %>
+            </p>
+            <label class="control-label">Designation</label>
+            <p>
+                <%= waitingusers.designation %>
+            </p>
+            <label class="control-label">Email ID</label>
+            <p>
+                <%= waitingusers.email %>
+            </p>
+            <p class="lead">
+                <form action="/admin/register/<%=waitingusers.username%>" method="POST">
+                    <button class="btn btn-primary" style="margin:auto;display:block;">Accept</button>
+                </form>
+            </p>
+        </div>
+    </div>
+    <% include _layouts/footer.ejs %>

@@ -1,0 +1,183 @@
+@media (max-width:700px) {
+  flex=25%
+}
+
+<html lang="en">
+
+<head>
+
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous"> -->
+  <link href="/css/bootswatch.css" rel="stylesheet">
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+  <style>
+    p {
+      word-break: break-all;
+      white-space: normal;
+    }
+
+    .badge-primary {
+      color: #fff;
+      background-color: #00897b;
+    }
+
+    h1 {
+      font-family: 'Trocchi', serif;
+      font-size: 45px;
+      font-weight: normal;
+      line-height: 48px;
+      margin: 0;
+    }
+
+
+    h2 {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 32px;
+      margin: 0 0 24px;
+    }
+
+
+    .subheader {
+      font-size: 26px;
+      font-weight: 300;
+      margin: 0 0 24px;
+    }
+
+    p {
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 18px;
+      line-height: 32px;
+      margin: 0 0 24px;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    a:hover {}
+  </style>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('.search-box input[type="text"]').on("keyup input", function () {
+        /* Get input value on change */
+        //console.log('haha');
+        var inputVal = $(this).val();
+        if (inputVal.length) {
+          $.get("http://localhost:3000/backend", {
+            term: inputVal
+          }).done(function (data) {
+            // Display the returned data in browser
+            //$("ul").empty();
+            document.getElementById("myDiv").innerHTML = "";
+            //var ans = data[0].title;
+            var mydiv = document.getElementById("myDiv");
+            var aTag = document.createElement('a');
+            //aTag.setAttribute('href',"yourlink.html");
+            aTag.setAttribute('href', "http://localhost:3000/posts/" + data[0].id);
+            aTag.className = "list-group-item";
+            aTag.innerHTML = data[0].title;
+            mydiv.appendChild(aTag);
+            /*var node = document.createElement("LI");                 // Create a <li> node
+             var textnode = document.createTextNode(data[0].title);         // Create a text node
+             node.appendChild(textnode); 
+             document.getElementsByClassName("result").appendChild(node);
+             */
+            for (var i = 1; i < data.length; i++) {
+              //ans = ans + "\n" + data[i].title;
+              /*var node = document.createElement("LI");                 // Create a <li> node
+              var textnode = document.createTextNode(data[i].title);         // Create a text node
+              node.appendChild(textnode); 
+              document.getElementsByClassName("result").appendChild(node);*/
+              var mydiv = document.getElementById("myDiv");
+              var aTag = document.createElement('a');
+              aTag.setAttribute('href', "http://localhost:3000/posts/" + data[i].id);
+              aTag.className = "list-group-item";
+              aTag.innerHTML = data[i].title;
+              mydiv.appendChild(aTag);
+            }
+            //resultDropdown.html(ans);
+          });
+        } else {
+          //$("ul").empty();
+          document.getElementById("myDiv").innerHTML = "";
+          //resultDropdown.html('');
+        }
+      });
+
+      // Set search input value on click of result item
+      $(document).on("click", ".result p", function () {
+        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+        $(this).parent("#result").empty();
+      });
+    });
+  </script>
+
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/">Knowledge Bank</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+
+    <div class="col-md-4 col-md-offset-4 search-box">
+      <!-- <form class="form-inline">-->
+      <input class="form-control mr-sm-2 z-depth-4" type="text" placeholder="Search" autocomplete="off">
+      <!--<ul id="result" class="list-group">
+        </ul>-->
+      <div style="position: absolute; width: 94%; z-index:4;" id="myDiv" class="list-group result z-depth-3">
+      </div>
+      <!--<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>-->
+      <!--</form>-->
+      <!--<div >
+        <form class="form-inline">
+          <input type="text" value="123">
+        </form>
+          <div class="result"></div>
+        </div>-->
+    </div>
+    <ul class="navbar-nav mr-auto navbar-right">
+      <% if(currentUser){ %>
+        <li class="nav-item">
+          <a class="nav-link" href="/pwd/<%= currentUser %>">D</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/settings">Settings</a>
+        </li>
+        <% } %>
+          <% if(currentUser){ %>
+            <li class="nav-item">
+              <a class="nav-link" href="/auth/logout">Logout</a>
+            </li>
+            <% } %>
+              <% if(!currentUser){ %>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">About Us </a>
+                </li>
+                <% } %>
+                  <% if(!currentUser){ %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Contact Us</a>
+                    </li>
+                    <% } %>
+                      <% if(!currentUser){ %>
+                        <li class="nav-item">
+                          <a class="nav-link" href="/auth">Login</a>
+                        </li>
+                        <% } %>
+
+    </ul>
+</nav>
+
+
+<body>

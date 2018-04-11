@@ -1,0 +1,113 @@
+<!--
+    INCLUDE IN HEADER
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+-->
+<% include _layouts/navbarHeader %>
+
+    <div class="container">
+        <div class="row">
+            <div class="container-fluid">
+                <!-- Currently a hardcoded variable -->
+                <div class="container">
+                    <div class="col-md-10">
+                        <h1>
+                            <%= post.title %>
+                        </h1>
+                    </div>
+                    <div class="col-md-1">
+                        <%  if(currentuser === post.author) { %>
+                            <a class='btn btn-warning' href='/posts/<%=post.id%>/edit'>Edit Post</a>
+
+                            <% } %>
+                    </div>
+                    <div class="col-md-1">
+                        <%  if(currentuser === post.author) { %>
+                            <form id="delete-btn" action="/posts/<%= post.id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">Delete Post</button>
+                            </form>
+                            <% } %>
+                    </div>
+                </div>
+
+                <p class="lead"> by
+                    <%= post.author %>
+                </p>
+                <hr>
+                <p style="font-size:160%; font-family:courier; text-align: justify;">
+                    <%= post.body %>
+                </p>
+                <hr>
+
+                <!-- <label class="control-label">Posted on:</label>
+                        </label> -->
+                <div class="d-flex w-100 justify-content-between">
+                    <small class="text-muted">
+                        <%= post.created_at %>
+                    </small>
+                    <small class="text-muted">
+                        <%= post.category %>
+                    </small>
+
+                    <small class="text-muted">
+                        <%= post.zone %>
+                    </small>
+
+                    <!-- <%= post.created_at %> -->
+
+                    <small class="text-muted">Views :
+                        <%= post.views %>
+                    </small>
+                </div>
+
+            </div>
+        </div>
+        <hr>
+        <div class="well">
+            <h4> Leave a Comment:</h4>
+
+            <form role="form" action="/posts/<%= post.id %>" method="post">
+                <div class="form-group z-depth-1">
+                    <textarea id="content" name="comment" class="form-control" rows="3"></textarea>
+                </div>
+                    <input name="to"  rows="1" value=<%=useremail%> style="visibility:hidden;"></input>
+                <input type="submit" name="submitbutton" id="register-submit" tabindex="4" class="form-control btn btn-primary" value="Submit">
+            </form>
+
+
+        </div>
+        <script src="https://apis.google.com/js/plusone.js">
+        </script>
+        <hr>
+        <!-- the comments -->
+        <div class="list-group">
+            <% for(var i=comments.length - 1; i>=0; i--) {%>
+                <div class="card border-primary mb-3">
+                    <div class="card-header d-flex w-100 justify-content-between">
+                        <h5>
+                            <%= comments[i].author %>
+                        </h5>
+                        <small class="text-muted">
+                            <%=comments[i].created_at%>
+                        </small>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <%= comments[i].body %>
+                        </p>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <!--<h3><i class="fa fa-comment"></i> User One says:
+            <small> 9:41 PM on August 24, 2014</small>
+        </h3>
+        <p>Excellent post! Thank You the great article, it was useful!</p>
+
+        <h3><i class="fa fa-comment"></i> User Two says:
+            <small> 9:47 PM on August 24, 2014</small>
+        </h3>
+        <p>Excellent post! Thank You the great article, it was useful!</p>-->
+    </div>
+    <% include _layouts/footer.ejs %>

@@ -1,0 +1,176 @@
+<div class="container">
+  <div class="main col-md-2">
+
+
+    <!-- <button type="button" class="btn btn-primary">Most Viewed Posts</button>
+    <button type="button" class="btn btn-primary">Recent Posts</button> -->
+    <div class="btn-group-vertical" role="group">
+      
+      <% if(dash){ %>
+        <a class="btn btn-outline-primary" href="/pwd/<%=users.username%>/sortby/mostview">Most Viewed Posts
+         </a>
+        <a class="btn btn-outline-primary" href="/pwd/<%=users.username%>/sortby/recent">Recent Posts
+         </a>
+         <div class="dropdown">
+        <button class="btn btn-outline-primary" type="button" data-toggle="dropdown">Categories
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Building">Building</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Bridge">Bridge</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Roads">Roads</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Sanitation">Sanitation and Water</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Electrical">Electrical Work</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/category/Mechanical">Mechanical Work</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn btn-outline-primary" type="button" data-toggle="dropdown">Zones
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/New Delhi">New Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/North Delhi">North Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/North West Delhi">North West Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/West Delhi">West Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/South Delhi">South Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/Central Delhi">Central Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/North East Delhi">North East Delhi</a>
+          </li>
+          <li>
+            <a href="/pwd/<%=users.username%>/sortby/zone/Shahdara">Shahdara</a>
+          </li>
+
+        </ul>
+      </div>
+      <% } %>
+
+      <% if(!dash) { %>
+      <a class="btn btn-outline-primary" href="/sortby/mostview">Most Viewed Posts</a>
+      <a class="btn btn-outline-primary" href="/sortby/recent">Recent Posts</a>
+      <div class="dropdown">
+        <button class="btn btn-outline-primary" type="button" data-toggle="dropdown">Categories
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/sortby/category/Building">Building</a>
+          </li>
+          <li>
+            <a href="/sortby/category/Bridge">Bridge</a>
+          </li>
+          <li>
+            <a href="/sortby/category/Roads">Roads</a>
+          </li>
+          <li>
+            <a href="/sortby/category/Sanitation">Sanitation and Water</a>
+          </li>
+          <li>
+            <a href="/sortby/category/Electrical">Electrical Work</a>
+          </li>
+          <li>
+            <a href="/sortby/category/Mechanical">Mechanical Work</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="dropdown">
+        <button class="btn btn-outline-primary" type="button" data-toggle="dropdown">Zones
+          <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="/sortby/zone/New Delhi">New Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/North Delhi">North Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/North West Delhi">North West Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/West Delhi">West Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/South Delhi">South Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/Central Delhi">Central Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/North East Delhi">North East Delhi</a>
+          </li>
+          <li>
+            <a href="/sortby/zone/Shahdara">Shahdara</a>
+          </li>
+
+        </ul>
+      </div>
+
+      <% } %>
+
+      
+    </div>
+  </div>
+  <div class="main pre-scrollable col-md-9" style="max-height: 80vh">
+    <div class="list-group z-depth-2">
+      <% for(var i=0;i<posts.length; i++) {%>
+        <a href="/posts/<%= posts[i].id %>" class="list-group-item list-group-item-action flex-column align-items-start">
+          <div class="d-flex w-100 justify-content-between">
+            <h4 class="mb-1">
+              <%= posts[i].title %>
+            </h4>
+            <small class="text-muted">
+              <%= posts[i].created_at %>
+            </small>
+          </div>
+          <p class="mb-1">
+            <%= posts[i].body.substring(0,100) %>
+          </p>
+          <div class="d-flex w-100 justify-content-between">
+            <small class="text-muted">
+              <%= posts[i].author %>
+            </small>
+            <small class="text-muted">
+              <%= posts[i].category %>
+            </small>
+            <small class="text-muted">
+              <%= posts[i].zone %>
+            </small>
+            <span class="badge badge-primary badge-pill">
+              <%= posts[i].views %>
+            </span>
+
+          </div>
+        </a>
+        <% } %>
+    </div>
+  </div>
+</div>
+</div>

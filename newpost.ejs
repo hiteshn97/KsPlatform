@@ -1,0 +1,89 @@
+<% include _layouts/navbarHeader %>
+    <style>
+        select {
+            box-sizing: content-box
+        }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="well well-sm">
+                    <form class="form-horizontal" action="/posts/new" method="POST">
+                        <fieldset>
+                            <legend class="text-center">
+                                <h1>Add New Post</h1>
+                            </legend>
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Post Title</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" name="title" placeholder="Enter post title here" rows="1"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Message body -->
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Post Content</label>
+                                <div class="col-md-9">
+                                    <textarea class="form-control" name="body" placeholder="Enter post content here" rows="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Post Category</label>
+                                <div class="col-md-9">
+                                    <select required name="category" class="form-control">
+                                        <option value="" disabled selected>Select post category</option>
+                                        <option value="Building">Building</option>
+                                        <option value="Bridge">Bridge</option>
+                                        <option value="Roads">Roads</option>
+                                        <option value="Sanitation">Sanitation and Water</option>
+                                        <option value="Electrical">Electrical Work</option>
+                                        <option value="Mechanical">Mechanical Work</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Post Zone</label>
+                                <div class="col-md-9">
+                                    <select required name="zone" class="form-control">
+                                        <option value="" disabled selected>Select post zone</option>
+                                        <option value="New Delhi">New Delhi</option>
+                                        <option value="North Delhi">North Delhi</option>
+                                        <option value="North West Delhi">North West Delhi</option>
+                                        <option value="West Delhi">West Delhi</option>
+                                        <option value="South Delhi">South Delhi</option>
+                                        <option value="Central Delhi">Central Delhi</option>
+                                        <option value="North East Delhi">North East Delhi</option>
+                                        <option value="Shahdara">Shahdara</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- <div class="form-group">
+                <label class="col-md-2 control-label">Add Image</label>
+                <div class="col-md-9">
+                <input type="file" name="picture" accept="image/*">
+                </div>
+            </div> -->
+
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Add PDF File</label>
+                                <div class="col-md-9">
+                                    <input type="file" name="pdffile" accept=".pdf">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12" style="text-align: center;">
+                                    <input type="Submit" class="btn btn-success"></input>
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <% include _layouts/footer.ejs %>

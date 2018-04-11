@@ -1,0 +1,50 @@
+<% include _layouts/navbarHeader %>
+
+    <div class="container-fluid d-flex w-100 justify-content-between">
+        <div>
+            <figure>
+                <h3>
+                    <ins>
+                        Admin
+                    </ins>
+                </h3>
+            </figure>
+        </div>
+
+        <div>
+
+            <h2>
+                adminName
+            </h2>
+        </div>
+
+        <div>
+            <h2>
+                adminUsername
+            </h2>
+        </div>
+    </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <p>
+        </p>
+    </div>
+    </div>
+    <div class="container-fluid">
+
+
+        <div class="main pre-scrollable col-md-6" style="max-height: 80vh">
+            <h1 align="center">Registered Users</h1>
+            <% include userContainer.ejs %>
+        </div>
+
+        <div class="main pre-scrollable col-md-6" style="max-height: 80vh">
+            <h1 align="center">Waiting List</h1>
+            <% include waitingContainer.ejs %>
+
+        </div>
+
+    </div>
+
+    <% include _layouts/footer.ejs %>
